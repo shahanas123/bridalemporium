@@ -649,8 +649,8 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('name');
         
-        $report=collect(DB::TABLE('Orderprdetails')->join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')
-        ->select('Orderprdetails.*','Orderdetails.*')
+        $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
+        ->select('orderprdetails.*','orderdetails.*')
         ->where('name','LIKE',"%{$keyword}%")->get());
 
         return view('dash.report',$data,compact('report'));
@@ -663,9 +663,9 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('date');
        
-        $report=collect(DB::TABLE('Orderprdetails')->join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')
-        ->select('Orderprdetails.*','Orderdetails.*')
-        ->where('Orderprdetails.created_at','LIKE',"%{$keyword}%")->get());
+        $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
+        ->select('orderprdetails.*','orderdetails.*')
+        ->where('orderprdetails.created_at','LIKE',"%{$keyword}%")->get());
 
 
         return view('dash.report',$data,compact('report'));
@@ -677,8 +677,8 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('type');
       
-        $report=collect(DB::TABLE('Orderprdetails')->join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')
-        ->select('Orderprdetails.*','Orderdetails.*')
+        $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
+        ->select('orderprdetails.*','orderdetails.*')
         ->where('type','LIKE',"%{$keyword}%")->get());
         return view('dash.report',$data,compact('report'));
         
