@@ -207,7 +207,7 @@
                 </div>        
                 <br>
                 <div class="form-group">
-                    <label>Price</label>
+                    <label>Image URL</label>
                     <input type="text" class="form-control" name="image" placeholder="Enter the image url" value="" required>
                     <span class="text-danger">@error('image url '){{ $message }} @enderror</span>
                 </div>
