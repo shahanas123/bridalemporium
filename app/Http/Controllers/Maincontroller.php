@@ -636,7 +636,7 @@ class Maincontroller extends Controller
 
 
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
-        $order= Orderprdetails::join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')->orderBy('Orderdetails.created_at','desc')->get();
+        $order= Orderprdetails::all();
         
         return view('dash.orders',$data,compact('order'));
     }
