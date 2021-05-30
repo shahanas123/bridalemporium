@@ -641,7 +641,9 @@ class Maincontroller extends Controller
         
         $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
         ->select('orderprdetails.*','orderdetails.*')
-        ->where('name','LIKE',"%{$keyword}%")->get());
+        ->where('name','LIKE',"%{$keyword}%")
+        ->orderBy('orderprdetails.created_at','desc')
+        ->get());
 
         return view('dash.report',$data,compact('report'));
          
@@ -655,7 +657,9 @@ class Maincontroller extends Controller
        
         $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
         ->select('orderprdetails.*','orderdetails.*')
-        ->where('orderprdetails.created_at','LIKE',"%{$keyword}%")->get());
+        ->where('orderprdetails.created_at','LIKE',"%{$keyword}%")
+        ->orderBy('orderprdetails.created_at','desc')
+        ->get());
 
 
         return view('dash.report',$data,compact('report'));
@@ -669,7 +673,10 @@ class Maincontroller extends Controller
       
         $report=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
         ->select('orderprdetails.*','orderdetails.*')
-        ->where('type','LIKE',"%{$keyword}%")->get());
+        ->where('type','LIKE',"%{$keyword}%")
+        ->orderBy('orderprdetails.created_at','desc')
+        ->get());
+
         return view('dash.report',$data,compact('report'));
         
     }
