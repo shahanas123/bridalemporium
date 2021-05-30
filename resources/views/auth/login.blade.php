@@ -46,7 +46,7 @@
             @csrf
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Enter the email " value="{{ old('email') }}">
+                    <input type="text" class="form-control" name="email" placeholder="Enter the email " value="">
                     <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                 </div>
                 <br>
