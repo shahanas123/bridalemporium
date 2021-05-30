@@ -636,7 +636,7 @@ class Maincontroller extends Controller
 
 
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
-        $order= Orderprdetails::join('Orderdetails','Orderprdetails.oid','=','Orderdetails.oid')->orderBy('Orderdetails.created_at','desc')->get();
+        $order= Orderprdetails::join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')->orderBy('Orderdetails.created_at','desc')->get();
         
         return view('dash.orders',$data,compact('order'));
     }
@@ -647,7 +647,7 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('name');
         
-        $report= Orderprdetails::join('Orderdetails','Orderprdetails.oid','=','Orderdetails.oid')->where('name','LIKE',"%{$keyword}%")->get();
+        $report= Orderprdetails::join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')->where('name','LIKE',"%{$keyword}%")->get();
         return view('dash.report',$data,compact('report'));
          
     }
@@ -658,7 +658,7 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('date');
        
-        $report= Orderprdetails::join('Orderdetails','Orderprdetails.oid','=','Orderdetails.oid')->where('Orderprdetails.created_at','LIKE',"%{$keyword}%")->get();
+        $report= Orderprdetails::join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')->where('Orderprdetails.created_at','LIKE',"%{$keyword}%")->get();
         return view('dash.report',$data,compact('report'));
        
     }
@@ -668,7 +668,7 @@ class Maincontroller extends Controller
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $keyword=request('type');
       
-        $report= Orderprdetails::join('Orderdetails','Orderprdetails.oid','=','Orderdetails.oid')->where('type','LIKE',"%{$keyword}%")->get();
+        $report= Orderprdetails::join('Orderdetails','Orderprdetails.id','=','Orderdetails.oid')->where('type','LIKE',"%{$keyword}%")->get();
         return view('dash.report',$data,compact('report'));
         
     }
