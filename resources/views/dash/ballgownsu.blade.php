@@ -174,7 +174,7 @@
 
           <div class="col">
             <div class="card" style="width: 20rem;">
-      <img class="card-img-top" src="{{ asset('storage/images/' . $prod->image) }}" width="350px;" height="350px;" alt="Card image cap">
+      <img class="card-img-top" src="{{ $prod->image }}" width="350px;" height="350px;" alt="Card image cap">
       <div class="card-block">
      
       @if($prod->quantity==1)

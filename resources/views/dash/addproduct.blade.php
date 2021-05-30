@@ -207,14 +207,11 @@
                 </div>        
                 <br>
                 <div class="form-group">
-                  <div class="custom-file">
-                  <label>Image</label>
-                  <br>
-                    <input type="file" class="custom-file-input" name="image">
-                    <label class="custom-file-label"></label >
-                    <span class="text-danger">@error('file '){{ $message }} @enderror</span>
+                    <label>Price</label>
+                    <input type="text" class="form-control" name="image" placeholder="Enter the image url" value="" required>
+                    <span class="text-danger">@error('image url '){{ $message }} @enderror</span>
                 </div>
-                </div>
+                
                   
                 <br>
                 <button type="submit" class="bn">Add</button>

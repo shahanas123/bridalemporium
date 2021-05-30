@@ -126,7 +126,7 @@
        
 
         
-        <img src="{{ asset('storage/images/' . $prod->image) }}" width="350px;" height="350px;" alt="image">
+        <img src="{{ $prod->image }}" width="350px;" height="350px;" alt="image">
         &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        
             Name : {{ $prod->prname }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

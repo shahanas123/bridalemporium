@@ -195,16 +195,20 @@
                 <div class="form-group">
                     <label>Price</label>
                     <input type="number" class="form-control" name="price" placeholder="" value="{{ $eproduct->price }}">
-                    <span class="text-danger">@error('price '){{ $message }} @enderror</span>
+                    <span class="text-danger">@error('price'){{ $message }} @enderror</span>
                 </div>        
                 <br>
                 <div class="form-group">
-                  <div class="custom-file">
                   <label>Image</label>
                   <br>
-                  <img src="{{ asset('storage/images/' . $eproduct->image) }}" width="350px;" height="350px;" alt="image">
+                  <img src="{{ $eproduct->image }}" width="350px;" height="350px;" alt="image">
                 </div>
-                </div>
+                <div class="form-group">
+                <br>
+                    <label>Image url</label>
+                    <input type="text" class="form-control" name="image" placeholder="" value="{{ $eproduct->image }}">
+                    <span class="text-danger">@error('image'){{ $message }} @enderror</span>
+                </div> 
                   
                 <br>
                 

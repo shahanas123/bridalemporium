@@ -264,21 +264,9 @@ class Maincontroller extends Controller
         $product->large =$request->large;
         $product->price =$request->price;
         $product->quantity =$request->quantity;
+        $product->image =$request->image;
 
-        if ($request->hasFile('image')){
-            $filenameWithExt=$request->file('image')->getClientOriginalName();
-           
-            
-            $filename= pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            
-            $extension=$request->file('image')->getClientOriginalExtension();
-
-            $fileNameToStore=$filename.'_'.time().'.'.$extension;
-
-            $path=$request->file('image')->storeAs('public/images',$fileNameToStore);
-    
-        }
-        $product->image =$fileNameToStore;
+        
         $save=$product->save();
 
         if($save){
@@ -322,6 +310,7 @@ class Maincontroller extends Controller
         $product->large =$request->large;
         $product->quantity =$request->quantity;
         $product->price =$request->price;
+        $product->image =$request->image;
         
         
 
