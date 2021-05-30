@@ -1,3 +1,7 @@
+<?php
+use  App\Http\Controllers\maincontroller;
+$total= maincontroller::CartItem();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +44,7 @@
     <a class="btn btn-two" href="{{ route('dash.sheathgownsu') }}" style="color:#DEDFE2">SheathGowns</a>
   </li>
   <li class="nav-item">
-    <a class="btn btn-one active" aria-current="page" href="{{ route('dash.cart') }}" style="color:#DEDFE2"  >Cart</a>
+    <a class="btn btn-one active" aria-current="page" href="{{ route('dash.cart') }}" style="color:#DEDFE2"  >Cart ({{$total}})</a>
   </li>
   <li class="nav-item">
     <a class="btn btn-one" href="{{ route('dash.reviewsu') }}" style="color:#DEDFE2">Reviews</a>

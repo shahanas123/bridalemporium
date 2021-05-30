@@ -711,6 +711,12 @@ class Maincontroller extends Controller
 
     }
    
+
+
+    static public function CartItem(){
+        
+        return Cart::count();
+    }
     
 }
 
