@@ -636,7 +636,7 @@ class Maincontroller extends Controller
 
 
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
-        $order=collect(DB::TABLE('orderdetails')->join('orderprdetails','orderdetails.id','=','orderprdetails.oid')
+        $order=collect(DB::TABLE('orderprdetails')->join('orderdetails','orderprdetails.id','=','orderdetails.oid')
         ->select('orderprdetails.*','orderdetails.*')
         ->get());
         
