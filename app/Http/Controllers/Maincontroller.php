@@ -479,8 +479,16 @@ class Maincontroller extends Controller
 
     $product=Cart::all();
     
-    
-      return view('dash.buynow',$data,compact('product'));
+    $sum=0;
+    $total=0;
+      foreach($product as $prod)
+      {
+          $sum+=$prod->price;   
+      }
+    $gst=$sum*0.18;
+    $amount=$sum+100+$gst;
+
+      return view('dash.buynow',$data,compact('sum','amount','gst','product'));
     }
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////          payment
@@ -598,21 +606,45 @@ class Maincontroller extends Controller
         }
 
         $product=Cart::all();
-        return view('dash.addtocart',$data,compact('product'));
+
+        $sum=0;
+        foreach($product as $prod)
+        {
+            $sum+=$prod->price;   
+        }
+
+        return view('dash.addtocart',compact('sum','product'));
     }
 
     function cart()
     {
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $product=Cart::query()->orderBy('created_at','desc')->get();
-        return view('dash.addtocart',$data,compact('product'));
+        
+        $sum=0;
+        foreach($product as $prod)
+        {
+            $sum+=$prod->price;   
+        }
+        
+        return view('dash.addtocart',compact('sum','product'));
     }
 
     function carttobuy()
     {
       $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
       $product=Cart::all();
-      return view('dash.buynow',$data,compact('product'));
+      
+      $sum=0;
+      $total=0;
+        foreach($product as $prod)
+        {
+            $sum+=$prod->price;   
+        }
+      $gst=$sum*0.18;
+      $amount=$sum+100+$gst;
+
+      return view('dash.buynow',$data,compact('sum','gst','amount','product'));
     }
 
 
@@ -706,7 +738,14 @@ class Maincontroller extends Controller
         $cart->delete();
         $data=['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
         $product=Cart::query()->orderBy('created_at','desc')->get();
-        return view('dash.addtocart',$data,compact('product'));
+        
+        $sum=0;
+        foreach($product as $prod)
+        {
+            $sum+=$prod->price;   
+        }
+
+        return view('dash.addtocart',compact('sum','product'));
         
 
     }

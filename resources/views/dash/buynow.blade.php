@@ -117,20 +117,46 @@ $total= maincontroller::CartItem();
 
 <body>
    
-   
+<style>.card {
+        margin: auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+      .item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    left:280px;
+    top:0px;
+    background:red;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:5px 10px;
+    font-size:12px;
+}
+.vl {
+  border-right: 3px solid #E9E8E8 ;
+  height: 500px;
+}
+</style>
 
-<div class="container">
+
     
-        <br>
-        <h4>Transaction Summary</h4>
         
-       <br>
-        <div class="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-12">
+        
+        <h4>&nbsp;&nbsp;&nbsp;Transaction Summary</h4>
+        
+       
+        
         
             <form action="{{ route('dash.order') }}" method="post">
             
             
-        <h6>Order Details</h6>
+        
         
 
             @if(Session::get('success'))
@@ -145,29 +171,27 @@ $total= maincontroller::CartItem();
             </div>
             @endif
 
-
+            <body style="background-color:#F8F9F9  ;">
+<div class="container">
+        <div class="row">
 
             @foreach($product as $prod)
-        <tr>
-        
-        
-        <img src="{{ $prod->image }}" width="350px;" height="350px;" alt="image">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
-            Name : {{ $prod->prname }}
-            &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;
-Sizes available:
-                
-<select class="input" name="size" id="size" style="width:50px; height: 40px;">
-        
-        
-       
+            <div class="col">
+            <div class="card" style="width: 20rem;">
+      <img class="card-img-top" src="{{ $prod->image }}" width="350px;" height="350px;" alt="Card image cap">
+      <div class="card-block">
       
-         
-                  
+      @if($prod->quantity==1)
+      <span class="notify-badge">Exclusive</span>
+      @endif
+      <h4 class="card-title"> {{ $prod->prname }}</h4>
+        <p class="card-text">
+        
+        
+        Size:
                 
-                
-                  
+<select class="input" name="size" id="size" style="width:50px; height: 30px;">
+                   
                 @if( $prod->small)  
                 <option value="1">S</option>
   @endif
@@ -180,11 +204,17 @@ Sizes available:
                 <option value="3">L</option>
                 @endif
                 </select>
-                
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Price : {{ $prod->price }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+            Price: {{ $prod->price }}</p>
+             
+
+      </div>
+    </div>
+          </div>
+          
+          
         </tr>
 @endforeach
 <tr></tr>
@@ -194,7 +224,9 @@ Sizes available:
 
 <div class="container">
 
-
+<div class="row">
+<div class="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+      
 
             @csrf
                 <div class="form-group">
@@ -230,7 +262,7 @@ Sizes available:
                 <label>Card details</label>
                 
                 <div class="input-group" >
-                    <input type="text" class="form-control" name="card" placeholder="Card Number" value="" style="width:10px; height:40px" required>
+                    <input type="text" class="form-control" name="card" placeholder="Card Number" value="" style="width:200px; height:40px" required>
                     &nbsp;&nbsp;&nbsp;
                     <input type="text" class="form-control" name="cvv" placeholder="CVV" value="" style="width:10px; height:40px" required>
                     <span class="text-danger">@error('card'){{ $message }}@enderror</span>
@@ -244,15 +276,45 @@ Sizes available:
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    
                 </div>
-                <br>
+                </div>
                 
+                <div class="col col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <div class="vl"></div>
+                </div>
+                <div class="col col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                
+                <center>
+                <br><br><br>
+                <table class="table table-bordered">
+                <tr>
+                <td>Total amount   </td>        <td> Rs. {{$sum}} </td>
+                </tr>
+                <tr>
+               <td> 18% gst        </td>     <td> Rs. {{$gst}} </td>
+               </tr>
+               <tr>
+                <td>Delivery Charges</td>     <td> Rs.100 </td>
+                </tr>
+                  
+                <tr>
+                <td> <h6>Amount Payable</h6> </td>     <td> <h6>Rs. {{$amount}}</h6> </td>
+                </tr>
+                 <br><br>
+                </table>
+</center>
+                
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit" class="btn btn-block btn-success">Confirm Payment</button>
+                </div>
                 <br><br>
                 </table>
                 </div>
             </form>
         </div>
     </div>    
+</div>
 </div>
 <div class="col col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3"></div>
 

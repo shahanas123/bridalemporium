@@ -1,6 +1,7 @@
 <?php
 use  App\Http\Controllers\maincontroller;
 $total= maincontroller::CartItem();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,7 +150,7 @@ Sizes available:
                 
                 @endif
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Price : {{ $prod->price }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Price : Rs. {{ $prod->price }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/dash/{{$prod->id}}/remove"  class=" btn btn-warning">Remove</a>
             &nbsp;&nbsp;&nbsp;
             
@@ -164,6 +165,13 @@ Sizes available:
         </tr>
       
 @endforeach
+
+<center>
+<br>
+<h4>Total amount : Rs. {{$sum}}</h4>
+
+</center>
+<br>
 <center>
 
 <a  class="btn btn-success" href="{{ route('dash.carttobuy') }}" >order Now</a>
